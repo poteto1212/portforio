@@ -1,3 +1,7 @@
 Django
 Pillow
 django-widget-tweaks
+dj-database-url
+python-dotenv
+psycopg2-binary
+django-dbbackup

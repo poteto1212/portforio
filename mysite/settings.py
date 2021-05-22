@@ -39,7 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'widget_tweaks',
     'app',
+    'dbbackup',
 ]
+
+# 追加
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+# BASE_DIR/backups/にバックアップファイルを保存する設定
+DBBACKUP_STORAGE_OPTIONS = {'location': os.path.join(BASE_DIR, 'backups')}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,11 +82,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+import dj_database_url
+from dotenv import(find_dotenv,load_dotenv)
+load_dotenv(find_dotenv())
+
+DATABASES={
+    'default':dj_database_url.config(conn_max_age=600),
 }
 
 
