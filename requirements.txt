@@ -5,3 +5,5 @@ dj-database-url
 python-dotenv
 psycopg2-binary
 django-dbbackup
+django-bootstrap4
+whitenoise
